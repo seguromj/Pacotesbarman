@@ -3,110 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Coleta de Dados</title>
+    <title>Formulário de Entrega TOP</title>
     <style>
-        /* CSS para estilização básica */
+        /* CSS: Estilização e Animações */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000080; /* Azul Marinho */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 10px;
         }
+
+        /* Animações Keyframes */
+        @keyframes pulse-light {
+            0% { box-shadow: 0 0 10px #25d366, 0 0 20px #25d366; }
+            50% { box-shadow: 0 0 20px #25d366, 0 0 40px #25d366; }
+            100% { box-shadow: 0 0 10px #25d366, 0 0 20px #25d366; }
+        }
+
+        @keyframes subtle-move {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.005); } 
+            100% { transform: scale(1); }
+        }
+
+        /* Animação de luz correndo na borda (border-walk) */
+        @keyframes border-run {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+
         .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
             width: 100%;
-            max-width: 400px;
+            max-width: 320px; /* Tamanho Compacto */
+            animation: subtle-move 8s infinite ease-in-out; 
+            
+            /* REGRAS PARA A ANIMAÇÃO DE BORDA */
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1; 
+            border: 2px solid #ccc; /* Borda padrão, que será coberta */
         }
+
+        /* ELEMENTO QUE CRIA O RASTRO DE LUZ - CORRETA NA BORDA */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            
+            background: linear-gradient(45deg, #00BFFF, #000080, #00BFFF, #000080);
+            background-size: 400% 400%; 
+            
+            /* MÁSCARA PARA MOSTRAR APENAS A BORDA */
+            mask: 
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask-composite: exclude; 
+            
+            animation: border-run 5s linear infinite;
+            filter: blur(2px); 
+            z-index: 0; 
+        }
+
+        /* Estilo para o container das imagens (Flexbox para alinhamento vertical) */
+        .image-header {
+            display: flex; 
+            justify-content: space-around; 
+            align-items: center; 
+            margin-bottom: 15px; 
+        }
+        
+        /* Estilos das imagens laterais */
+        .img-seguro, .img-seguro1 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            z-index: 2; 
+        }
+
+        /* Estilo da imagem central */
+        .logo {
+            width: 80px; 
+            height: 80px; 
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 128, 0.5); 
+            z-index: 2; 
+        }
+
         h2 {
             text-align: center;
-            color: #333;
+            color: #000080;
             margin-bottom: 20px;
+            font-size: 1.5em; 
+            padding-bottom: 8px;
+            border-bottom: 2px solid #000080;
+            position: relative;
+            z-index: 2;
+            
+            /* NOVAS REGRAS: Fonte e Efeito Neon */
+            font-family: 'Courier New', monospace; 
+            text-shadow: 0 0 5px #00BFFF, 0 0 10px #00BFFF; 
         }
+        
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
         }
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
+            font-weight: 600;
+            color: #000080;
+            position: relative;
+            z-index: 2;
         }
         input[type="text"], 
         input[type="email"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             box-sizing: border-box;
+            font-size: 0.9em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+        input:focus {
+            border-color: #00BFFF;
+            box-shadow: 0 0 8px rgba(0, 191, 255, 0.7); 
+            outline: none;
         }
         button {
             width: 100%;
             padding: 12px;
-            background-color: #25d366; /* Cor do WhatsApp */
+            background-color: #25d366;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1em;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s, transform 0.1s;
+            position: relative;
+            animation: pulse-light 1.5s infinite alternate; 
+            z-index: 2; 
         }
         button:hover {
             background-color: #128c7e;
+            transform: translateY(-1px);
         }
         .required-field::after {
             content: " *";
-            color: red;
+            color: #000080;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Coleta de Dados</h2>
+        <div class="image-header">
+            <img class="img-seguro" src="https://img.freepik.com/vetores-premium/100-logotipo-seguro-design-de-cracha-seguro-icones-vetoriais-seguros-pagamentos-seguros_526569-740.jpg" alt="logo-seguro-esquerda">
+            <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYcPXcXFO35T02Gy_fpTmsGTRHJ_KDgELxTv7AuXPNWg&s=10" alt="logo">
+            <img class="img-seguro1" src="https://img.freepik.com/vetores-premium/100-logotipo-seguro-design-de-cracha-seguro-icones-vetoriais-seguros-pagamentos-seguros_526569-740.jpg" alt="logo-seguro-direita">
+        </div>
+      
+        <h2>Endereço de Entrega</h2>
         <form id="dataForm" onsubmit="enviarParaWhatsApp(event)">
             
             <div class="form-group">
-                <label for="email" class="required-field">E-mail</label>
-                <input type="email" id="email" required>
+                <label for="nome" class="required-field">Nome Completo</label>
+                <input type="text" id="nome" required>
             </div>
             
             <div class="form-group">
-                <label for="cpf" class="required-field">CPF</label>
-                <input type="text" id="cpf" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="cep">CEP</label>
-                <input type="text" id="cep" required>
+                <label for="cep" class="required-field">CEP</label>
+                <input 
+                    type="text" 
+                    id="cep" 
+                    maxlength="8" 
+                    onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" 
+                    onblur="buscarEndereco(this.value)"
+                    required
+                >
             </div>
 
             <div class="form-group">
-                <label for="rua">Rua/Avenida</label>
+                <label for="bairro" class="required-field">Bairro</label>
+                <input type="text" id="bairro" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cidade" class="required-field">Cidade</label>
+                <input type="text" id="cidade" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="estado" class="required-field">Estado (UF)</label>
+                <input type="text" id="estado" maxlength="2" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rua" class="required-field">Rua/Avenida</label>
                 <input type="text" id="rua" required>
             </div>
             
             <div class="form-group">
-                <label for="endereco" class="required-field">Endereço (Detalhes)</label>
+                <label for="endereco" class="required-field">Endereço (Nº ou Quadra/Lote)</label>
                 <input type="text" id="endereco" required>
             </div>
 
             <div class="form-group">
                 <label for="complemento">Complemento</label>
-                <input type="text" id="complemento" required>
+                <input type="text" id="complemento">
             </div>
-            
+            <br><br>
             <button type="submit">Enviar</button>
         </form>
     </div>
 
     <script>
-        // JavaScript para a lógica de envio
+        // --- FUNÇÃO PARA BUSCAR ENDEREÇO (VIA CEP) ---
+        function buscarEndereco(cep) {
+            var cepLimpo = cep.replace(/\D/g, ''); 
+
+            if (cepLimpo.length != 8) {
+                return;
+            }
+
+            var url = 'https://viacep.com.br/ws/' + cepLimpo + '/json/';
+
+            fetch(url)
+                .then(response => response.json()) 
+                .then(data => {
+                    if (data.erro) {
+                        alert("CEP não encontrado.");
+                        return;
+                    }
+                    
+                    // Preenche os campos de REGIÃO
+                    document.getElementById("bairro").value = data.bairro || '';
+                    document.getElementById("cidade").value = data.localidade || '';
+                    document.getElementById("estado").value = data.uf || '';
+                    
+                    // Preenche Rua e Complemento
+                    document.getElementById("rua").value = data.logradouro || '';
+                    document.getElementById("complemento").value = data.complemento || '';
+                    
+                    // Limpa e foca no campo Nº/Detalhes
+                    document.getElementById("endereco").value = ""; 
+                    document.getElementById("endereco").focus(); 
+
+                })
+                .catch(error => {
+                    console.error('Erro na busca de CEP:', error);
+                    alert("Erro ao buscar CEP. Tente novamente.");
+                });
+        }
+        
+        // --- FUNÇÃO PARA ENVIAR WHATSAPP ---
         function enviarParaWhatsApp(event) {
             event.preventDefault(); 
             
@@ -115,41 +283,52 @@
             }
             
             // 1. Coletar os valores dos campos
-            var email = document.getElementById("email").value;
-            var cpf = document.getElementById("cpf").value; // Obrigatório, então não precisa de "Não Informado"
-            var cep = document.getElementById("cep").value || "Não Informado";
-            var rua = document.getElementById("rua").value || "Não Informada";
-            var endereco = document.getElementById("endereco").value; // Obrigatório
+            var nome = document.getElementById("nome").value; // ALTERADO AQUI
+            var cep = document.getElementById("cep").value; 
+            
+            // Campos de região
+            var bairro = document.getElementById("bairro").value;
+            var cidade = document.getElementById("cidade").value;
+            var estado = document.getElementById("estado").value;
+            
+            var rua = document.getElementById("rua").value;
+            var endereco = document.getElementById("endereco").value; 
             var complemento = document.getElementById("complemento").value || "N/A";
 
             // SEU LINK FIXO AQUI
             var linkFixo = "https://www.exemplo.com.br/verificacao"; // <-- MUDAR ESTE LINK!
             
-            // Seu número de WhatsApp (55 é o código do Brasil)
+            // Seu número de WhatsApp
+            // Seu número de WhatsApp
+            // Seu número de WhatsApp
             var numeroWhatsApp = "5562995679219"; 
             
-            // 2. Montar a mensagem com quebras de linha (usando \n)
+            // 2. Montar a mensagem com quebras de linha (\n)
             var mensagem = 
-                "**🚀 NOVO CADASTRO DE CLIENTE**\n\n" + 
+                "🚀 *NOVO CADASTRO DE CLIENTE* 🚀\n\n" + 
                 
-                "**👤 Dados Pessoais**\n" + 
-                "E-mail: " + email + "\n" +
-                "CPF: " + cpf + "\n\n" +
+                "*👤 Dados Pessoais 👤*\n" + 
+                "Nome: " + nome + "\n\n" + // ALTERADO AQUI
                 
-                "**🏠 Detalhes de Localização**\n" +
-                "CEP: " + cep + "\n" +
-                "Rua/Av: " + rua + "\n" +
-                "Endereço (Detalhes): " + endereco + "\n" +
-                "Complemento: " + complemento + "\n\n" + // Duas quebras de linha para separar o link
+                "🏠 *Detalhes de Localização*\n" +
+                "📫 CEP: " + cep + "\n" +
+                "🏙️ Bairro: " + bairro + "\n" +
+                "🗾 Cidade/Estado: " + cidade + "/" + estado + "\n" +
+                "🛣️ Rua/Av: " + rua + "\n" +
+                "📍 Endereço (Nº ou Quadra/Lote): " + endereco + "\n" +
+                "🧾 Complemento: " + complemento + "\n\n" +
                 
-                // INSERÇÃO DO LINK NA ÚLTIMA LINHA
-                "Código do Drink: [444D01] \n" +
-                "Através desse 👇 Link você faz o pagamento:\n" +
+                "🔗 Link de Verificação:\n" + 
                 linkFixo; 
 
             // 3. Codificar a mensagem para URL
             var mensagemCodificada = encodeURIComponent(mensagem);
             
+            
+            "👇 Faça o pagamento do Drink 👇 \n\n" +
+            
+            // 4. Montar o link final
+            // 4. Montar o link final
             // 4. Montar o link final
             var url = "https://wa.me/" + numeroWhatsApp + "?text=" + mensagemCodificada;
 
