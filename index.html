@@ -77,8 +77,8 @@
             </div>
             
             <div class="form-group">
-                <label for="cpf">CPF</label>
-                <input type="text" id="cpf">
+                <label for="cpf" class="required-field">CPF</label>
+                <input type="text" id="cpf" required>
             </div>
             
             <div class="form-group">
@@ -108,41 +108,45 @@
     <script>
         // JavaScript para a lógica de envio
         function enviarParaWhatsApp(event) {
-            // Previne o comportamento padrão do formulário (recarregar a página)
             event.preventDefault(); 
             
-            // Verifica se o formulário passou na validação nativa (campos 'required')
             if (!document.getElementById("dataForm").checkValidity()) {
-                // Se não for válido, o navegador exibirá as mensagens de erro nativas.
                 return; 
             }
             
             // 1. Coletar os valores dos campos
             var email = document.getElementById("email").value;
-            var cpf = document.getElementById("cpf").value || "Não Informado";
+            var cpf = document.getElementById("cpf").value; // Obrigatório, então não precisa de "Não Informado"
             var cep = document.getElementById("cep").value || "Não Informado";
             var rua = document.getElementById("rua").value || "Não Informada";
-            var endereco = document.getElementById("endereco").value;
+            var endereco = document.getElementById("endereco").value; // Obrigatório
             var complemento = document.getElementById("complemento").value || "N/A";
 
+            // SEU LINK FIXO AQUI
+            var linkFixo = "https://www.exemplo.com.br/verificacao"; // <-- MUDAR ESTE LINK!
+            
             // Seu número de WhatsApp (55 é o código do Brasil)
             var numeroWhatsApp = "5562995679219"; 
             
-            // 2. Montar a mensagem com quebras de linha (%0A)
+            // 2. Montar a mensagem com quebras de linha (usando \n)
             var mensagem = 
-                "**🚀 NOVO CADASTRO DE CLIENTE**%0A%0A" + 
+                "**🚀 NOVO CADASTRO DE CLIENTE**\n\n" + 
                 
-                "**👤 Dados Pessoais**%0A" + 
-                "E-mail: " + email + "%0A" +
-                "CPF: " + cpf + "%0A%0A" +
+                "**👤 Dados Pessoais**\n" + 
+                "E-mail: " + email + "\n" +
+                "CPF: " + cpf + "\n\n" +
                 
-                "**🏠 Detalhes de Localização**%0A" +
-                "CEP: " + cep + "%0A" +
-                "Rua/Av: " + rua + "%0A" +
-                "Endereço (Detalhes): " + endereco + "%0A" +
-                "Complemento: " + complemento;
+                "**🏠 Detalhes de Localização**\n" +
+                "CEP: " + cep + "\n" +
+                "Rua/Av: " + rua + "\n" +
+                "Endereço (Detalhes): " + endereco + "\n" +
+                "Complemento: " + complemento + "\n\n" + // Duas quebras de linha para separar o link
+                
+                // INSERÇÃO DO LINK NA ÚLTIMA LINHA
+                "🔗 Link de Verificação:\n" + 
+                linkFixo; 
 
-            // 3. Codificar a mensagem para URL (Crucial para caracteres especiais)
+            // 3. Codificar a mensagem para URL
             var mensagemCodificada = encodeURIComponent(mensagem);
             
             // 4. Montar o link final
