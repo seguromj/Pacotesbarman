@@ -201,7 +201,7 @@ setTimeout(showNextMessage, 2000);
     
     
     //O whatsapp 
-        const telefoneWhatsApp = '5591984111645'; // Formato: 55 + DDD + Número
+        const telefoneWhatsApp = '5591981125238'; // Formato: 55 + DDD + Número
     //O whatsapp 
     
     
