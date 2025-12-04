@@ -1,0 +1,759 @@
+
+/* Cores */
+.cor-card {
+  color: #5C5454;
+}
+.cor-logo2 {
+  color: #68736B;
+  font-size: 9px;
+}
+.cor-text {
+  color: #1D3312;
+}
+
+
+
+/*-----------------------------------*/
+/*-----------------------------------*/
+/*-----------------------------------*/
+/*---------Style perfil------------*/
+
+/* Base */
+body {
+    background-color: white;
+    font-family: sans-serif;
+    margin: 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Define as cires do fundo do body*/
+
+.nuance-info-box {
+     text-align: center;
+    padding: 10px 20px;
+    
+    margin-top: -50px; 
+    border-radius: 20px 20px 0 0; 
+    position: relative; 
+    /* 1. Definir o Gradiente (cores, ângulo) */
+    background: linear-gradient(-56deg, #FFB3E9, #FF91DE, #FFB5FA, #FF7AF7);
+    
+    /* 2. Aumentar o tamanho do fundo (ex: 400% da largura/altura) */
+    background-size: 400% 400%;
+    
+    /* 3. Aplicar a animação (nome, duração, tipo, repetição) */
+    animation: gradientMove1 1s ease infinite;
+}
+
+/* 4. Definir a Animação (@keyframes) */
+@keyframes gradientMove1 {
+    /* No início (0% da animação) */
+    0% {
+        /* Posição inicial do fundo */
+        background-position: 0% 50%;
+    }
+    /* Na metade (50% da animação) */
+    50% {
+        /* Desloca a posição para o lado oposto */
+        background-position: 100% 50%;
+    }
+    /* No fim (100% da animação) */
+    100% {
+        /* Volta para a posição inicial */
+        background-position: 0% 50%;
+    }
+}
+
+/* Container que simula a tela do app */
+
+
+.app-screen {
+    max-width: 600px;
+    margin: 0 auto; /* Centraliza no desktop */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 0;
+}
+
+/* 1. CABEÇALHO COM IMAGEM DE FUNDO */
+.header-banner {
+    height: 150px;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEQHrEqQhJ3ysC9phTYPRABCk66VAX-KM43KaQQm3XEC-pZAh8y676e11E&s=10') no-repeat center center/cover; 
+    position: relative;
+}
+
+
+.logo-box {
+    margin-top: -40px; 
+    margin-bottom: 10px;
+}
+
+.nuance-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao-1 {
+    font-size: 15px;
+    color: #FF00E5;
+}
+
+
+@keyframes bounce {
+    0%, 100% {
+        /* Posição inicial e final: 0 pixels (parada) */
+        transform: translateY(0); 
+    }
+    50% {
+        /* No meio da animação: move a imagem 8 pixels para cima (o pulinho) */
+        transform: translateY(-8px);
+    }
+}
+/*Função mexer imagem ACIMA*/
+/*----------------------------------------------*/
+
+
+
+
+
+.estrela-diagonal {
+   display: inline-block; 
+        padding-top: 3px;
+        font-size: 16px;
+        /* MUDANÇA AQUI: de 'to bottom' para 'to top right' */
+        background: linear-gradient(to bottom right, 
+            #EDE902 0%, 
+            #EDE902 52%, /* Amarelo no canto inferior esquerdo/primeira metade */
+            black 50%, /* Preto a partir da metade */
+            black 100%
+        );
+        
+        /* O restante do código de mascaramento permanece o mesmo */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+
+
+/* 7. Status ABERTO/FECHADO*/
+/* Estilos base do container de status */
+.status {
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.1s ease; /* Transição suave para a mudança de status */
+}
+
+/* Estilo para status ABERTO */
+.aberto {
+    background-color: #00D138; /* Um verde chamativo */
+    color: #FF00C8;
+}
+
+/* Estilo para status FECHADO */
+.fechado {
+    background-color: #F44336; /* Um vermelho */
+    color: white;
+}
+
+/* ------------------------------------- */
+/* ANIMAÇÃO LEVE - Vai e Volta (CSS Keyframes) */
+/* ------------------------------------- */
+.aberto {
+    animation: pulse-aberto 2s infinite ease-in-out; /* Aplica a animação ao status ABERTO */
+}
+
+@keyframes pulse-aberto {
+    0% {
+        transform: scale(1); /* Tamanho normal */
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); /* Sombra 0 */
+    }
+    50% {
+        transform: scale(1.02); /* Aumenta levemente */
+        box-shadow: 0 0 10px 2px rgba(76, 175, 80, 0.9); /* Sombra para dar um efeito de pulso */
+    }
+    100% {
+        transform: scale(1); /* Volta ao tamanho normal */
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); /* Sombra 0 */
+    }
+}
+
+/* Remove a animação quando estiver FECHADO */
+.fechado {
+    animation: none;
+    transform: none;
+}
+
+/*-----------------------------------*/
+/*-----------------------------------*/
+/*-----------------------------------*/
+/*----Carrocel Automatico de imgs ---*/
+
+
+/* Container principal. Define a área visível do carrossel. */
+.carrossel-container {
+    width: 100%; /* Largura total da tela ou do seu elemento pai */
+  max-width: 500px; /* Limite de largura para melhor visualização, ajuste conforme necessário */
+    margin: 30px auto; /* Centraliza o carrossel na página */
+    overflow: hidden; /* **Oculta as imagens que estão fora da área visível** */
+    white-space: nowrap; /* Impede que os itens quebrem para a linha de baixo */
+  
+}
+
+/* Faixa que contém todas as imagens. Será animada para criar o movimento. */
+.carrossel-faixa {
+    display: flex; /* Coloca os itens lado a lado */
+    animation: rolar 8s linear infinite; /* Aplica a velocidade e animação de rolagem */
+    /* Tempo de animação: 16s é apenas um exemplo. Ajuste para a velocidade desejada.
+       `linear`: mantém a velocidade constante.
+       `infinite`: repete a animação indefinidamente. */
+}
+
+
+
+
+/* Container de cada imagem */
+.item-carrossel {
+    /* O item deve ter `flex-shrink: 0` para não encolher na faixa flexível */
+    flex-shrink: 0;
+    margin: 0 10px; /* Espaçamento entre as imagens */
+}
+
+/* Estilização da imagem (60x60 e redonda) */
+.item-carrossel img {
+    width: 60px; /* Largura definida */
+    height: 60px; /* Altura definida */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    border-radius: 50%; /* **Torna a imagem perfeitamente redonda** */
+    border: 2px solid #ccc; /* Borda simples para destacar */
+    display: block;
+    border: none;
+}
+
+
+
+
+/* Keyframes para a animação. Controla o movimento horizontal da faixa. */
+@keyframes rolar {
+    0% {
+        /* Posição inicial: 0% de deslocamento horizontal */
+        transform: translateX(0);
+    }
+    100% {
+        /* Posição final: Move a faixa 50% para a esquerda.
+           Como os itens foram duplicados no HTML, -50% garante que o loop volte
+           ao início da segunda cópia, dando a ilusão de infinito. */
+        transform: translateX(-560px); /*Ajuste o valor do px pqra ter a rotação infinita do carrocel sem salto ou pulo*/
+    }
+}
+
+/*---------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+/*--------------------------style loja---------------------------------------------------------*/
+
+  /* ========================================= */
+        /* CSS GERAL E VARIÁVEIS DE TEMA ROSA */
+        /* ========================================= */
+        :root {
+            --rosa-principal: #FFC0CB; /* Pink */
+            --rosa-claro: #FADDE3; 
+            --amarelo-destaque: #FFD700; /* Dourado */
+            --cor-texto: #4B0082; /* Roxo Escuro/Vinho para contraste */
+            --cor-fundo-secao: #ffffff;
+            --font-principal: 'Poppins', sans-serif;
+        }
+
+        
+    
+    
+    
+    
+    
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 10px;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--rosa-principal);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: var(--cor-texto);
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Estilização para o container SVG */
+        .curved-title {
+            
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Estilos do texto dentro do SVG (para que fique bonito) */
+        .svg-text {
+            /* Define a fonte cursiva para o texto curvado */
+            font-family: 'Great Vibes', cursive;
+            font-size: 45px; /* Tamanho da fonte */
+            fill: #8b4513; /* Cor do texto (um tom de marrom elegante) */
+            text-anchor: middle; /* Garante que o texto seja centralizado no caminho */
+        }
+        
+
+        /* BOTÕES DE DESTAQUE */
+        .btn {
+            background-color: var(--amarelo-destaque);
+            color: var(--cor-texto);
+            padding: 0px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+          m
+        }
+
+        .btn:hover {
+            background-color: #e0b400;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366; /* Cor do WhatsApp */
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128c7e;
+        }
+
+        /* ========================================= */
+        /* CARDS DE PRODUTOS */
+        /* ========================================= */
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card-produto {
+            background-color: var(--rosa-claro);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card-produto:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-produto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-produto-body {
+            padding: 20px;
+        }
+
+        .card-produto h3 {
+            color: var(--cor-texto);
+            margin-top: 0;
+        }
+
+        /* ========================================= */
+        /* SEÇÃO CRIAR BOLO (INTERATIVA) */
+        /* ========================================= */
+        #criacao-bolo {
+            background-color: var(--cor-fundo-secao);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .passos-criacao {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .passo-card {
+            background-color: #FFC4FA;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed var(--rosa-principal);
+        }
+
+        .passo-card label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--cor-texto);
+        }
+        
+        select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid var(--rosa-principal);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: var(--font-principal);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        /* RESUMO DO PEDIDO */
+        #resumo-pedido {
+            background-color: var(--amarelo-destaque);
+            color: var(--cor-texto);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: left;
+            margin-top: 30px;
+            border: 3px solid var(--rosa-principal);
+        }
+
+        #resumo-pedido h3 {
+            margin-top: 0;
+            color: var(--cor-texto);
+        }
+
+        #resumo-texto {
+            white-space: pre-line; /* Mantém quebras de linha no resumo */
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cor-texto);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: var(--rosa-principal);
+            text-decoration: none;
+        }
+
+
+
+/*-----------------------------------*/
+/*-----------------------------------*/
+/*-----------------------------------*/
+/*-----Avaliação comentario----------*/
+
+.review-carousel-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    position: relative; /* Essencial para posicionar os botões de navegação */
+    overflow: hidden; 
+    padding: 10px 0; /* Espaço para o botão não encostar na borda */
+}
+
+.review-carousel-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    font-size: 16px;
+}
+
+/* 2. A Pista de Rolagem (Track) */
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Rolagem horizontal ativada */
+    scroll-snap-type: x mandatory; 
+    padding: 10px; /* Previne que o scrollbar corte o conteúdo */
+    /* Estilos para um scroll mais suave no mouse/trackpad */
+    scroll-behavior: smooth;
+    
+    /* Opcional: Esconder a barra de rolagem */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* 3. Estilo e Dimensões de Cada Card (200px + 200px) */
+.review-card {
+    /* Define a largura do card, garantindo 200px de altura para a imagem + espaço para o texto */
+    flex-shrink: 0;
+    width: 250px; 
+    align-items: center;
+    height: 290px; /* Aproximadamente 200px para imagem e 200px para conteúdo */
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    scroll-snap-align: start; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* 4. Espaço da Imagem (200px de altura) */
+.img-estrela {
+    width: 100px;
+    height: 100px; /* **Altura de 200px para a imagem** */
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9em;
+    text-align: center;
+    padding: 10px;
+}
+/* 5. Cor das estrelas */
+.estrela-carrocel {
+  color: #EDE902;
+}
+
+
+
+/* 6. Conteúdo (Texto) do Card */
+.card-content {
+  align-items: center;
+  justify-content: center;
+    padding: 10px;
+    text-align: center;
+    flex-grow: 1; /* Permite que o texto preencha o espaço restante */
+}
+
+.rating {
+    color: red; /* Para destacar as estrelas */
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+.client-name {
+    font-weight: bold;
+    color: #444;
+}
+
+.comment {
+    font-size: 0.80em;
+    font-style: italic;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* 7. Botões de Navegação */
+.nav-button {
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    font-size: 1.5em;
+    line-height: 1;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-button {
+    left: 0;
+    color: brown;
+}
+
+.next-button {
+    right: 0;
+  color: chartreuse;
+}
+
+
+
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*--------------------------------------------------*/
+/*-----Styles.CSS do Pacote-------------------------*/
+
+
+.pacotes-card {
+  background-color: red;
+  width: 300px;
+  height: 400px;
+}
+
+.img-pacotes {
+  width: 300px;
+  height: 100px;
+}
+
+
+
+
+
+/*--------------------------------------*/
+/*--------------------------------------*/
+/*--------------------------------------*/
+/*--------------------------------------*/
+/*--------Buttons Imagens---------------*/
+
+#button-imgs {
+  background-color: #2E7343;
+  border: none;
+  width: 300px;
+  padding: 13px;
+  border-radius: 40px;
+}
+
+.imgbutton001 {
+  /* Esta é a regra principal: faz a imagem sumir */
+  display: none;
+  
+  /* Estilos opcionais para a imagem */
+  max-width: 100%; 
+  height: auto;
+  margin-top: 20px;
+  border: 2px solid #333;
+}
+
+/* Opcional: Adiciona um estilo para quando a imagem for exibida */
+.imagem-visivel {
+  display: block; /* Ou 'inline-block', dependendo do seu layout */
+}
+
+
+
+/*--------------------------------------*/
+/*--------------------------------------*/
+/*--------------------------------------*/
+/*------Mensagens de Atenção------------*/
+
+
+/*------Mensagens de Atenção------------*/
+
+/* Estilo Base da Caixa de Atenção */
+#atencao-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px 20px; /* Mais espaço interno */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    display: none; /* Começa escondido, será 'flex' quando exibido pelo JS */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    max-width: 300px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+/* Estilo do Cabeçalho "Atenção!" - USA FLEXBOX AGORA */
+.atencao-header {
+    /* Usa Flexbox para colocar ícone e texto lado a lado */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o ícone e o texto */
+    font-size: 1em;
+    font-weight: bold;
+    color: #eb5757; /* Cor do texto de Atenção */
+    margin-bottom: 5px;
+}
+
+/* Estilo para o Checkmark Verde - REMOVIDO POSITION: ABSOLUTE */
+.atencao-checkmark {
+    width: 20px; /* Tamanho do círculo (reduzido para alinhar melhor) */
+    height: 20px;
+    margin-right: 5px; /* Espaço entre o ícone e o texto "Atenção!" */
+    /* Garante que o SVG preencha a div */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.atencao-checkmark svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilo do Texto "Atenção!" */
+.atencao-icon {
+    color: #eb5757; /* Cor de alerta */
+}
+
+/* Estilo do Conteúdo da Mensagem */
+.atencao-body {
+    font-size: 9px;
+    color: #333;
+    line-height: 1.4;
+    /* Ajusta o alinhamento do conteúdo principal */
+    margin-top: 5px;
+    padding-left: 25px; /* Alinha o conteúdo principal com o texto "Atenção!" */
+}
+
+.atencao-body strong {
+    color: #000;
+    font-weight: 700;
+}
+
+.bbb {
+  font-size: 9px;
+}
+
+
+
+
+.fa-location-dot {
+  color: red;
+}
+
+
+
+
